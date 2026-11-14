@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://yp2wy8m3kg83"]
+
+[ext_resource type="Script" uid="uid://befxlc3eapox4" path="res://scripts/game/bullet.gd" id="1_xvskw"]
+[ext_resource type="Texture2D" uid="uid://y87saogploh6" path="res://assets/Other/60040_308_Winchester_168_Grain_Classic_Hunter.png" id="2_e8n13"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u15yb"]
+size = Vector2(20, 4)
+
+[node name="Bullet" type="CharacterBody2D" unique_id=220797677]
+collision_mask = 4
+script = ExtResource("1_xvskw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1899116268]
+shape = SubResource("RectangleShape2D_u15yb")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1150627879]
+collision_mask = 7
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D" unique_id=1379386759]
+shape = SubResource("RectangleShape2D_u15yb")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=17812047]
+scale = Vector2(0.02, 0.02)
+texture = ExtResource("2_e8n13")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

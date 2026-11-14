@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://qgrbqi5fuqqn"]
+
+[ext_resource type="Script" uid="uid://b10gdkxmi0ybo" path="res://scripts/game/rubees/coin.gd" id="1_npwt8"]
+[ext_resource type="Texture2D" uid="uid://b2n7qmkxd8c8t" path="res://assets/Items/Fruits/Strawberry.png" id="1_v4bfp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u15yb"]
+
+[node name="Coin" type="Area2D" unique_id=1298228030]
+script = ExtResource("1_npwt8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1898181481]
+shape = SubResource("RectangleShape2D_u15yb")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1467071550]
+texture = ExtResource("1_v4bfp")
+hframes = 17
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
