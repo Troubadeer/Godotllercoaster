@@ -26,5 +26,3 @@ hframes = 11
 [node name="collision" type="CollisionShape2D" parent="." unique_id=1423151895]
 position = Vector2(0, 2.5)
 shape = SubResource("RectangleShape2D_l5m7f")
-
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
