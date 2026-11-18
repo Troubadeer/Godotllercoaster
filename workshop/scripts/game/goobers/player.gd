@@ -17,7 +17,6 @@ var reticle_angle: float
 var shootable : bool = true
 
 func _process(delta: float) -> void:
-	print(current_health)
 	var mouse_pos: Vector2 = get_local_mouse_position()
 	reticle_angle = mouse_pos.angle_to(Vector2(0, 50))
 	if (global_position.distance_to(mouse_pos) >= 25.0):
