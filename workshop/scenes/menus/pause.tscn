@@ -1,3 +1,45 @@
 [gd_scene format=3 uid="uid://ckej6wk5cx074"]
 
+[ext_resource type="Script" uid="uid://cffkn60rkiojr" path="res://scripts/pause.gd" id="1_iohl6"]
+
 [node name="Pause" type="Node2D" unique_id=770922893]
+script = ExtResource("1_iohl6")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1674153721]
+z_index = 100
+offset_right = 1366.0
+offset_bottom = 789.0
+color = Color(0.3647059, 0.3647059, 0.42352942, 0.5882353)
+
+[node name="TextEdit" type="RichTextLabel" parent="." unique_id=2111458409]
+z_index = 101
+offset_left = 432.0
+offset_top = 70.0
+offset_right = 1505.0
+offset_bottom = 523.0
+theme_override_font_sizes/normal_font_size = 64
+text = "paws???"
+
+[node name="Button" type="Button" parent="." unique_id=927281464]
+z_index = 101
+offset_left = 453.0
+offset_top = 377.0
+offset_right = 815.0
+offset_bottom = 451.0
+text = "Quit to Title"
+
+[node name="Button3" type="Button" parent="." unique_id=1360706888]
+z_index = 101
+offset_left = 455.0
+offset_top = 278.0
+offset_right = 633.0
+offset_bottom = 335.0
+text = "RESUME THE GAME"
+
+[node name="Button2" type="Button" parent="." unique_id=872693598]
+z_index = 101
+offset_left = 495.0
+offset_top = 491.0
+offset_right = 582.0
+offset_bottom = 548.0
+text = "Exit Game"
