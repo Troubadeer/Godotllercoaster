@@ -15,7 +15,6 @@ const SHOT_COOLDOWN : float = 0.25
 var invuln : bool = false
 var reticle_angle: float
 var shootable : bool = true
-var lives : int = 3
 
 func _process(delta: float) -> void:
 	var mouse_pos: Vector2 = get_local_mouse_position()
@@ -26,7 +25,6 @@ func _process(delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("shoot"):
 		shoot()
-
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -71,10 +69,11 @@ func take_damage(damage : int) -> void:
 			sprite.modulate.a *= 2.0
 	
 func kill() -> void:
-	lives -= 1
-	if lives > 0:
-		#TODO: Reset Level!
-		pass
+	GameManager.lives -= 1
+	await get_tree().create_timer(0.5).timeout
+	if GameManager.lives > 0:
+		current_health = MAX_HEALTH
+		GameManager.load_level(GameManager.current_level)
 	else:
 		#TODO: Game Over!
 		pass

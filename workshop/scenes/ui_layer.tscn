@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://cbvrodb04r67i"]
+
+[ext_resource type="Script" uid="uid://b2jyi4vc4cgg7" path="res://scripts/game/game_manager.gd" id="1_bkwom"]
+[ext_resource type="PackedScene" uid="uid://b4b1o8jyhspq4" path="res://scenes/levels/test_level_1.tscn" id="2_6av8n"]
+
+[node name="ui_layer" type="Node2D" unique_id=586266045]
+script = ExtResource("1_bkwom")
+
+[node name="TestLevel1" parent="." unique_id=322389122 instance=ExtResource("2_6av8n")]
+position = Vector2(184, 132)
