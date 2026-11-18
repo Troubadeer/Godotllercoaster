@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://e0smsod8uw16"]
+
+[ext_resource type="Script" uid="uid://mubdqkl0ku78" path="res://scripts/game/rubees/healing_item.gd" id="1_jmsdp"]
+[ext_resource type="Texture2D" uid="uid://b2n7qmkxd8c8t" path="res://assets/Items/Fruits/Strawberry.png" id="2_eidl2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u15yb"]
+
+[node name="Health" type="Area2D" unique_id=1611331535]
+modulate = Color(1, 0.30588236, 1, 1)
+script = ExtResource("1_jmsdp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1859538445]
+shape = SubResource("RectangleShape2D_u15yb")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=250043600]
+texture = ExtResource("2_eidl2")
+hframes = 17
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

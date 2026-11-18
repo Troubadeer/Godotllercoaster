@@ -2,6 +2,7 @@
 
 [ext_resource type="TileSet" uid="uid://cfmivjpeb1060" path="res://assets/Terrain/terrain_default.tres" id="1_lw4g3"]
 [ext_resource type="PackedScene" uid="uid://gfq87aonxpi5" path="res://scenes/goobers/goomber.tscn" id="1_ov5y5"]
+[ext_resource type="PackedScene" uid="uid://e0smsod8uw16" path="res://scenes/prefabs/health.tscn" id="2_0vxsf"]
 [ext_resource type="PackedScene" uid="uid://dn00j7gam0j7e" path="res://scenes/goobers/player.tscn" id="2_ov5y5"]
 [ext_resource type="PackedScene" uid="uid://qgrbqi5fuqqn" path="res://scenes/prefabs/coin.tscn" id="4_xu8tg"]
 
@@ -9,6 +10,7 @@
 
 [node name="Goomber" parent="." unique_id=88526748 instance=ExtResource("1_ov5y5")]
 position = Vector2(137, -14)
+drop_item = ExtResource("2_0vxsf")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=479079267]
 texture_filter = 1
@@ -16,7 +18,7 @@ tile_map_data = PackedByteArray("AAAAAAAAAAAGAAAAAAAAAAEAAAAGAAEAAAABAAAAAAAHAAA
 tile_set = ExtResource("1_lw4g3")
 
 [node name="Player" parent="." unique_id=102182892 instance=ExtResource("2_ov5y5")]
-position = Vector2(8, -22)
+position = Vector2(26, -20)
 
-[node name="Coin" parent="." unique_id=1298228030 instance=ExtResource("4_xu8tg")]
+[node name="Coin" parent="." unique_id=680089101 instance=ExtResource("4_xu8tg")]
 position = Vector2(60, -13)
