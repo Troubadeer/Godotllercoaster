@@ -4,11 +4,6 @@ class_name bullet
 const SPEED: float = 450.0
 var damage: int = 1
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	
-	print(velocity)
-	print("I live")
 
 func update_velocity() -> void:
 	velocity = Vector2.from_angle(rotation).normalized() * SPEED

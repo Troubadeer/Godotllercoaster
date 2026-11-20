@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://sghpfxfjvd34" path="res://assets/Main Characters/Pink Man/Idle (32x32).png" id="2_comvc"]
 [ext_resource type="PackedScene" uid="uid://yp2wy8m3kg83" path="res://scenes/prefabs/bullet.tscn" id="2_l5m7f"]
 [ext_resource type="Texture2D" uid="uid://b7dxeginjur6t" path="res://assets/Menu/Buttons/Close.png" id="3_cjyfx"]
+[ext_resource type="PackedScene" uid="uid://bt6y6o4c2ttqu" path="res://scenes/menus/player_health_bar.tscn" id="4_jhkhg"]
 [ext_resource type="PackedScene" uid="uid://ckej6wk5cx074" path="res://scenes/menus/pause.tscn" id="4_jk416"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u15yb"]
@@ -84,9 +85,12 @@ autoplay = &"idle"
 zoom = Vector2(3, 3)
 
 [node name="Pause" parent="camera" unique_id=770922893 instance=ExtResource("4_jk416")]
-visible = false
 position = Vector2(-192, -108)
 scale = Vector2(0.35, 0.35)
+
+[node name="PlayerHealthBar" parent="camera" unique_id=846363951 instance=ExtResource("4_jhkhg")]
+position = Vector2(-191, -107)
+scale = Vector2(0.4, 0.4)
 
 [node name="reticle" type="Sprite2D" parent="." unique_id=644803229]
 z_index = 60

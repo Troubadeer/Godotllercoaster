@@ -17,7 +17,7 @@ const AIR_JUMP_SPEED_BOOST : float  = 2.25
 @onready var current_health : int = MAX_HEALTH
 @onready var death_height : float = 100.0
 
-var speed = 100.0
+var speed : float = 120.0
 var invuln : bool = false
 var reticle_angle: float
 var shootable : bool = true
@@ -28,6 +28,7 @@ var current_powerup: POWERUPS = POWERUPS.NONE
 enum POWERUPS {NONE, BIG, SPEED}
 
 func _process(_delta: float) -> void:
+	camera.get_child(1).update_health_bar(current_health)
 	var mouse_pos: Vector2 = get_local_mouse_position()
 	reticle_angle = mouse_pos.angle_to(Vector2(0, 50))
 	if (global_position.distance_to(mouse_pos) >= 25.0):

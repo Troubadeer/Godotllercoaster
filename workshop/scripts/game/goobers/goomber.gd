@@ -3,7 +3,7 @@ extends enemy
 class_name goomber
 
 const MAX_HEALTH : int = 3
-const MAX_SPEED : float = 450.0
+const MAX_SPEED : float = 750.0
 const CONTACT_DAMAGE : int = 1
 
 @onready var sprite : Sprite2D = $sprite

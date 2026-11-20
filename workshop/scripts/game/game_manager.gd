@@ -18,8 +18,9 @@ func load_level(path : String) -> void :
 	var lv : Node = load(path).instantiate()
 
 	ui_layer.get_child(0).queue_free()
-	ui_layer.add_child(lv)
-	ui_layer.move_child(lv, 0)
+	ui_layer.call_deferred("add_child", lv)
+	ui_layer.call_deferred("move_child", lv, 0)
+	MusicManager.play_track(2)
 	current_level = path
 	
 func do_game_over() -> void :
@@ -32,8 +33,6 @@ func enter_gameplay() -> void :
 	await get_tree().process_frame
 	await get_tree().process_frame
 	ui_layer = get_tree().current_scene
-	print(ui_layer)
-	print(get_tree().current_scene)
 	load_level("res://scenes/levels/level_1.tscn")
 	
 func pause_game(Player : player) -> void:

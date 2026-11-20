@@ -26,7 +26,7 @@ theme_override_font_sizes/normal_font_size = 64
 text = "paws???"
 
 [node name="title_screen" type="Button" parent="." unique_id=927281464]
-process_mode = 3
+process_mode = 2
 modulate = Color(1, 1, 1, 0)
 z_index = 101
 offset_left = 453.0
@@ -36,7 +36,7 @@ offset_bottom = 451.0
 text = "Quit to Title"
 
 [node name="resume" type="Button" parent="." unique_id=1360706888]
-process_mode = 3
+process_mode = 2
 modulate = Color(1, 1, 1, 0)
 z_index = 101
 offset_left = 455.0
@@ -46,7 +46,7 @@ offset_bottom = 335.0
 text = "RESUME THE GAME"
 
 [node name="exit_game" type="Button" parent="." unique_id=872693598]
-process_mode = 3
+process_mode = 2
 modulate = Color(1, 1, 1, 0)
 z_index = 101
 offset_left = 495.0
