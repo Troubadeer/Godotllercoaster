@@ -2,7 +2,7 @@ extends CharacterBody2D
 class_name bullet
 
 const SPEED: float = 450.0
-const DAMAGE: int = 1
+var damage: int = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -24,5 +24,5 @@ func _physics_process(_delta: float) -> void:
 	
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is enemy:
-		body.take_damage(DAMAGE)
+		body.take_damage(damage)
 		queue_free()

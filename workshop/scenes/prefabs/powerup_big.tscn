@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://dkfldpcp8u7vv"]
+
+[ext_resource type="Script" uid="uid://bqbggqvo836c1" path="res://scripts/game/rubees/powerup.gd" id="1_dg8at"]
+[ext_resource type="Texture2D" uid="uid://b2n7qmkxd8c8t" path="res://assets/Items/Fruits/Strawberry.png" id="2_fpqts"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u15yb"]
+
+[node name="BigGuy" type="Area2D" unique_id=1298228030]
+script = ExtResource("1_dg8at")
+powerup_name = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1898181481]
+shape = SubResource("RectangleShape2D_u15yb")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1467071550]
+modulate = Color(0.14509805, 0.3647059, 1, 1)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_fpqts")
+hframes = 17
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
