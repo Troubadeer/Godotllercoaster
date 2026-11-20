@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c4vg4871ml07y"
+path="res://.godot/imported/bang_whonk.mp3-663802b47d72b1f9851c469d6543463e.mp3str"
+
+[deps]
+
+source_file="res://assets/Sound Effects/bang_whonk.mp3"
+dest_files=["res://.godot/imported/bang_whonk.mp3-663802b47d72b1f9851c469d6543463e.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

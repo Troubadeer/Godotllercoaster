@@ -92,4 +92,5 @@ scale = Vector2(0.35, 0.35)
 position = Vector2(0, -50)
 texture = ExtResource("3_cjyfx")
 
-[node name="player_sfx" type="AudioStreamPlayer2D" parent="." unique_id=995645367]
+[node name="AudioListener2D" type="AudioListener2D" parent="." unique_id=1623811219]
+current = true
