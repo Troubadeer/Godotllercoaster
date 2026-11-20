@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://dn00j7gam0j7e"]
 
 [ext_resource type="Script" uid="uid://b1mcb3gbpxkwb" path="res://scripts/game/goobers/player.gd" id="1_cjyfx"]
-[ext_resource type="Texture2D" uid="uid://sghpfxfjvd34" path="res://assets/Main Characters/Pink Man/Idle (32x32).png" id="2_comvc"]
 [ext_resource type="PackedScene" uid="uid://yp2wy8m3kg83" path="res://scenes/prefabs/bullet.tscn" id="2_l5m7f"]
 [ext_resource type="Texture2D" uid="uid://b7dxeginjur6t" path="res://assets/Menu/Buttons/Close.png" id="3_cjyfx"]
+[ext_resource type="Texture2D" uid="uid://dq1axd4gghhv8" path="res://assets/Main Characters/Pink Man/sprite_sheets.png" id="3_jhkhg"]
 [ext_resource type="PackedScene" uid="uid://bt6y6o4c2ttqu" path="res://scenes/menus/player_health_bar.tscn" id="4_jhkhg"]
 [ext_resource type="PackedScene" uid="uid://ckej6wk5cx074" path="res://scenes/menus/pause.tscn" id="4_jk416"]
 
@@ -24,6 +24,34 @@ tracks/0/keys = {
 "update": 1,
 "values": [0]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(3, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_jhkhg"]
+resource_name = "double_jump"
+length = 0.575
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.030000031, 0.13000003, 0.23500003, 0.33500004, 0.42500004, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 4), Vector2i(1, 4), Vector2i(2, 4), Vector2i(3, 4), Vector2i(4, 4), Vector2i(5, 4)]
+}
 
 [sub_resource type="Animation" id="Animation_ft5uv"]
 resource_name = "idle"
@@ -41,26 +69,47 @@ tracks/0/keys = {
 "values": [3, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 }
 
-[sub_resource type="Animation" id="Animation_l5m7f"]
+[sub_resource type="Animation" id="Animation_mtx7j"]
 resource_name = "jump"
+length = 0.1
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:texture")
+tracks/0/path = NodePath(".:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": []
+"values": [Vector2i(3, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ermp4"]
+resource_name = "run"
+length = 1.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.030000031, 0.13000003, 0.23500003, 0.33500004, 0.42500004, 0.515, 0.61500007, 0.715, 0.815, 0.915, 1.0150001, 1.115),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1), Vector2i(4, 1), Vector2i(5, 1), Vector2i(6, 1), Vector2i(7, 1), Vector2i(8, 1), Vector2i(9, 1), Vector2i(10, 1), Vector2i(11, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kf2sy"]
 _data = {
 &"RESET": SubResource("Animation_4kkla"),
+&"double_jump": SubResource("Animation_jhkhg"),
 &"idle": SubResource("Animation_ft5uv"),
-&"jump": SubResource("Animation_l5m7f")
+&"jump": SubResource("Animation_mtx7j"),
+&"run": SubResource("Animation_ermp4")
 }
 
 [node name="Player" type="CharacterBody2D" unique_id=102182892]
@@ -74,8 +123,10 @@ shape = SubResource("RectangleShape2D_u15yb")
 
 [node name="player_sprite" type="Sprite2D" parent="." unique_id=1216956270]
 texture_filter = 1
-texture = ExtResource("2_comvc")
-hframes = 11
+texture = ExtResource("3_jhkhg")
+hframes = 12
+vframes = 6
+frame = 3
 
 [node name="animation_player" type="AnimationPlayer" parent="player_sprite" unique_id=1288146802]
 libraries/ = SubResource("AnimationLibrary_kf2sy")

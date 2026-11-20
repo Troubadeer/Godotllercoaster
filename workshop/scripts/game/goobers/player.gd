@@ -14,6 +14,7 @@ const AIR_JUMP_SPEED_BOOST : float  = 2.25
 @onready var reticle : Sprite2D = $reticle
 @onready var sprite : Sprite2D = $player_sprite
 @onready var camera : Camera2D = $camera
+@onready var animation_player: AnimationPlayer = $player_sprite/animation_player
 @onready var current_health : int = MAX_HEALTH
 @onready var death_height : float = 100.0
 
