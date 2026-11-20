@@ -72,6 +72,17 @@ func _physics_process(delta: float) -> void:
 		elif air_jump:
 			do_air_jump(direction, coyote > 0)
 	
+	
+	# Parker I hate the fact that I did it like this too, but we have 51 minutes...
+	if velocity.x == 0 and is_on_floor():
+		animation_player.play("idle")
+	elif is_on_floor():
+		animation_player.play("run")
+	elif not is_on_floor() and air_jump:
+		animation_player.play("jump")
+	else:
+		animation_player.play("double_jump")
+	
 	set_current_animation()
 	move_and_slide()
 	if global_position.y >= death_height:
