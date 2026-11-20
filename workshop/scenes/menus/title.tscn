@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://imndrmlod7k8"]
 
+[ext_resource type="Script" uid="uid://dfovhh0fiqok8" path="res://scenes/menus/title.gd" id="1_n8x5b"]
 [ext_resource type="Texture2D" uid="uid://c173p4jyqsfyh" path="res://assets/Background/Purple.png" id="1_pcubs"]
 
 [node name="Title" type="Node2D" unique_id=2110705023]
+script = ExtResource("1_n8x5b")
 
 [node name="background" type="Sprite2D" parent="." unique_id=253514619]
 position = Vector2(575.00006, 324)
@@ -32,3 +34,6 @@ offset_right = 696.0
 offset_bottom = 476.0
 theme_override_font_sizes/font_size = 32
 text = "Exit Game"
+
+[connection signal="pressed" from="start_button" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="exit_button" to="." method="_on_exit_button_pressed"]

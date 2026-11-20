@@ -3,15 +3,19 @@
 [ext_resource type="Script" uid="uid://cffkn60rkiojr" path="res://scripts/pause.gd" id="1_iohl6"]
 
 [node name="Pause" type="Node2D" unique_id=770922893]
+process_mode = 3
 script = ExtResource("1_iohl6")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1674153721]
+process_mode = 3
+modulate = Color(1, 1, 1, 0)
 z_index = 100
-offset_right = 1366.0
-offset_bottom = 789.0
+offset_right = 1154.0
+offset_bottom = 654.0
 color = Color(0.3647059, 0.3647059, 0.42352942, 0.5882353)
 
 [node name="TextEdit" type="RichTextLabel" parent="." unique_id=2111458409]
+process_mode = 3
 modulate = Color(1, 1, 1, 0)
 z_index = 101
 offset_left = 432.0
@@ -22,6 +26,7 @@ theme_override_font_sizes/normal_font_size = 64
 text = "paws???"
 
 [node name="title_screen" type="Button" parent="." unique_id=927281464]
+process_mode = 3
 modulate = Color(1, 1, 1, 0)
 z_index = 101
 offset_left = 453.0
@@ -31,6 +36,7 @@ offset_bottom = 451.0
 text = "Quit to Title"
 
 [node name="resume" type="Button" parent="." unique_id=1360706888]
+process_mode = 3
 modulate = Color(1, 1, 1, 0)
 z_index = 101
 offset_left = 455.0
@@ -40,6 +46,7 @@ offset_bottom = 335.0
 text = "RESUME THE GAME"
 
 [node name="exit_game" type="Button" parent="." unique_id=872693598]
+process_mode = 3
 modulate = Color(1, 1, 1, 0)
 z_index = 101
 offset_left = 495.0

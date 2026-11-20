@@ -1,0 +1,24 @@
+[gd_scene format=4 uid="uid://d20u0c46jtc7"]
+
+[ext_resource type="PackedScene" uid="uid://gfq87aonxpi5" path="res://scenes/goobers/goomber.tscn" id="1_fmg3e"]
+[ext_resource type="PackedScene" uid="uid://e0smsod8uw16" path="res://scenes/prefabs/health.tscn" id="2_ftfob"]
+[ext_resource type="TileSet" uid="uid://cfmivjpeb1060" path="res://assets/Terrain/terrain_default.tres" id="3_fkk1g"]
+[ext_resource type="PackedScene" uid="uid://dn00j7gam0j7e" path="res://scenes/goobers/player.tscn" id="4_ugcn1"]
+[ext_resource type="PackedScene" uid="uid://qgrbqi5fuqqn" path="res://scenes/prefabs/coin.tscn" id="5_pimnq"]
+
+[node name="TestLevel1" type="Node2D" unique_id=322389122]
+
+[node name="Goomber" parent="." unique_id=88526748 instance=ExtResource("1_fmg3e")]
+position = Vector2(137, -14)
+drop_item = ExtResource("2_ftfob")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=479079267]
+texture_filter = 1
+tile_map_data = PackedByteArray("AAAAAAAAAAAGAAAAAAAAAAEAAAAGAAEAAAABAAAAAAAHAAAAAAABAAEAAAAHAAEAAAACAAAAAAAHAAAAAAACAAEAAAAHAAEAAAAEAAEAAAAHAAEAAAAAAAIAAAAGAAAAAAABAAIAAAAGAAAAAAACAAIAAAAGAAAAAAADAAAAAAAHAAAAAAADAAEAAAAHAAEAAAAEAAAAAAAHAAAAAAAFAAAAAAAHAAAAAAAFAAEAAAAHAAEAAAD9//7/AAAGAAAAAAD9////AAAGAAEAAAD///7/AAAGAAAAAAD/////AAAGAAEAAAD+/wAAAAAGAAAAAAD+/wEAAAAGAAEAAAAGAP7/AAAGAAAAAAAGAP//AAAGAAEAAAAHAAAAAAAGAAAAAAAHAAEAAAAGAAEAAAAIAAAAAAAGAAAAAAAIAAEAAAAGAAEAAAAJAAAAAAAGAAAAAAAJAAEAAAAGAAEAAAAKAP7/AAAGAAAAAAAKAP//AAAGAAEAAAA=")
+tile_set = ExtResource("3_fkk1g")
+
+[node name="Player" parent="." unique_id=102182892 instance=ExtResource("4_ugcn1")]
+position = Vector2(26, -20)
+
+[node name="Coin" parent="." unique_id=680089101 instance=ExtResource("5_pimnq")]
+position = Vector2(60, -13)

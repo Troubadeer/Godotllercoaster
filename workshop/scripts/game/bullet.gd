@@ -14,7 +14,7 @@ func update_velocity() -> void:
 	velocity = Vector2.from_angle(rotation).normalized() * SPEED
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	#position += Vector2.from_angle(rotation).normalized() * SPEED * delta
 	
 	if is_on_wall() or is_on_floor() or is_on_ceiling():

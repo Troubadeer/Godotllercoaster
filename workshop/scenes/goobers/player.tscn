@@ -4,9 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://sghpfxfjvd34" path="res://assets/Main Characters/Pink Man/Idle (32x32).png" id="2_comvc"]
 [ext_resource type="PackedScene" uid="uid://yp2wy8m3kg83" path="res://scenes/prefabs/bullet.tscn" id="2_l5m7f"]
 [ext_resource type="Texture2D" uid="uid://b7dxeginjur6t" path="res://assets/Menu/Buttons/Close.png" id="3_cjyfx"]
+[ext_resource type="PackedScene" uid="uid://ckej6wk5cx074" path="res://scenes/menus/pause.tscn" id="4_jk416"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u15yb"]
-size = Vector2(20, 26)
+size = Vector2(21, 26)
 
 [sub_resource type="Animation" id="Animation_4kkla"]
 length = 0.001
@@ -33,16 +34,32 @@ tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.6333333, 0.93333334),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3]
+"values": [3, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+}
+
+[sub_resource type="Animation" id="Animation_l5m7f"]
+resource_name = "jump"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kf2sy"]
 _data = {
 &"RESET": SubResource("Animation_4kkla"),
-&"idle": SubResource("Animation_ft5uv")
+&"idle": SubResource("Animation_ft5uv"),
+&"jump": SubResource("Animation_l5m7f")
 }
 
 [node name="Player" type="CharacterBody2D" unique_id=102182892]
@@ -51,7 +68,7 @@ script = ExtResource("1_cjyfx")
 packed_bullet = ExtResource("2_l5m7f")
 
 [node name="collision_box" type="CollisionShape2D" parent="." unique_id=1994745104]
-position = Vector2(0, 3)
+position = Vector2(0.5, 3)
 shape = SubResource("RectangleShape2D_u15yb")
 
 [node name="player_sprite" type="Sprite2D" parent="." unique_id=1216956270]
@@ -66,6 +83,13 @@ autoplay = &"idle"
 [node name="camera" type="Camera2D" parent="." unique_id=1926367032]
 zoom = Vector2(3, 3)
 
+[node name="Pause" parent="camera" unique_id=770922893 instance=ExtResource("4_jk416")]
+visible = false
+position = Vector2(-192, -108)
+scale = Vector2(0.35, 0.35)
+
 [node name="reticle" type="Sprite2D" parent="." unique_id=644803229]
 position = Vector2(0, -50)
 texture = ExtResource("3_cjyfx")
+
+[node name="player_sfx" type="AudioStreamPlayer2D" parent="." unique_id=995645367]

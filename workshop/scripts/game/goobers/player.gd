@@ -6,17 +6,25 @@ const SPEED = 100.0
 const JUMP_VELOCITY = -400.0
 const MAX_HEALTH = 5
 const SHOT_COOLDOWN : float = 0.25
+const MAX_COYOTE : int = 7
+
+const AIR_JUMP_SPEED_BOOST : float  = 2.25
 
 @export var packed_bullet: PackedScene
 
 @onready var reticle : Sprite2D = $reticle
 @onready var sprite : Sprite2D = $player_sprite
+@onready var camera : Camera2D = $camera
 @onready var current_health : int = MAX_HEALTH
+
+
 var invuln : bool = false
 var reticle_angle: float
 var shootable : bool = true
+var air_jump : bool = true
+var coyote : int = MAX_COYOTE
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var mouse_pos: Vector2 = get_local_mouse_position()
 	reticle_angle = mouse_pos.angle_to(Vector2(0, 50))
 	if (global_position.distance_to(mouse_pos) >= 25.0):
@@ -25,24 +33,40 @@ func _process(delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("shoot"):
 		shoot()
+	if event.is_action_pressed("pause"):
+		GameManager.pause_game(self)
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-
-	# Handle jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-
+	if is_on_floor():
+		air_jump = true
+		coyote = MAX_COYOTE
+	elif coyote > 0:
+		coyote -= 1
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis("left", "right")
-	if direction:
-		velocity.x = direction * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-
+	if direction && is_on_floor():
+		sprite.flip_h = direction - 1
+		velocity.x = move_toward(velocity.x, direction * SPEED, SPEED / 3)
+	elif direction && signf(direction) == signf(velocity.x):
+		sprite.flip_h = direction - 1
+		velocity.x = move_toward(velocity.x, direction * SPEED, SPEED / 60)
+	elif direction:
+		velocity.x = move_toward(velocity.x, direction * SPEED, SPEED / 15)
+		sprite.flip_h = direction - 1
+	elif is_on_floor():
+		velocity.x = move_toward(velocity.x, 0, SPEED / 20)
+		
+	if Input.is_action_just_pressed("jump"):
+		if is_on_floor():
+			velocity.y = JUMP_VELOCITY
+		elif air_jump:
+			do_air_jump(direction, coyote > 0)
+	
+	set_current_animation()
 	move_and_slide()
 
 func shoot() -> void:
@@ -70,7 +94,17 @@ func take_damage(damage : int) -> void:
 
 func heal(health: int) -> void:
 	current_health = clamp(current_health + health, current_health, MAX_HEALTH)
-
+	
+func do_air_jump(direction : float, ledge : bool) -> void:
+	velocity.y = JUMP_VELOCITY * 0.8
+	velocity.x = SPEED * AIR_JUMP_SPEED_BOOST
+	if signf(direction) != signf(velocity.x):
+		velocity.x *= direction
+	air_jump = ledge
+	
+	await get_tree().create_timer(0.4).timeout
+	
+	
 func kill() -> void:
 	process_mode = Node.PROCESS_MODE_DISABLED
 	GameManager.lives -= 1
@@ -81,3 +115,6 @@ func kill() -> void:
 	else:
 		GameManager.do_game_over()
 	get_parent().queue_free()
+
+func set_current_animation() -> void:
+	pass
