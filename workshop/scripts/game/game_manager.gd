@@ -36,13 +36,13 @@ func enter_gameplay() -> void :
 	load_level("res://scenes/levels/level_1.tscn")
 	
 func pause_game(Player : player) -> void:
-	if not get_tree().paused:
+	if get_tree().paused:
 		player_ref = Player
 		player_ref.camera.get_child(0).open()
 		get_tree().paused = true
 	
 func unpause_game() -> void:
-	if get_tree().paused:
+	if not get_tree().paused:
 		player_ref.camera.get_child(0).close()
 		get_tree().paused = false
 	

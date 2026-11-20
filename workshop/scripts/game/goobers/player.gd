@@ -105,19 +105,9 @@ func shoot() -> void:
 		await get_tree().create_timer(SHOT_COOLDOWN).timeout
 		shootable = true
 
+#TODO: add player taking damage
 func take_damage(damage : int) -> void:
-	if !invuln:
-		current_health -= damage
-		if current_health <= 0:
-			play_sfx(shriek_sfx)
-			kill()
-		else:
-			play_sfx(shriek_sfx)
-			invuln = true
-			sprite.modulate.a *= 0.5
-			await get_tree().create_timer(0.75).timeout
-			invuln = false
-			sprite.modulate.a *= 2.0
+	pass
 
 func heal(health: int) -> void:
 	current_health = clamp(current_health + health, current_health, MAX_HEALTH)
