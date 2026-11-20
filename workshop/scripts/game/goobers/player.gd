@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 class_name player
 
-const SPEED = 100.0
+const SPEED = 120.0
 const JUMP_VELOCITY = -400.0
 const MAX_HEALTH = 5
 const SHOT_COOLDOWN : float = 0.25
@@ -16,6 +16,7 @@ const AIR_JUMP_SPEED_BOOST : float  = 2.25
 @onready var sprite : Sprite2D = $player_sprite
 @onready var camera : Camera2D = $camera
 @onready var current_health : int = MAX_HEALTH
+@onready var death_height : float = 100.0
 
 
 var invuln : bool = false
@@ -62,12 +63,15 @@ func _physics_process(delta: float) -> void:
 		
 	if Input.is_action_just_pressed("jump"):
 		if is_on_floor():
+			play_sfx(ground_jump_sfx)
 			velocity.y = JUMP_VELOCITY
 		elif air_jump:
 			do_air_jump(direction, coyote > 0)
 	
 	set_current_animation()
 	move_and_slide()
+	if global_position.y >= death_height:
+		kill()
 
 func shoot() -> void:
 	if shootable:
@@ -85,8 +89,10 @@ func take_damage(damage : int) -> void:
 	if !invuln:
 		current_health -= damage
 		if current_health <= 0:
+			play_sfx(shriek_sfx)
 			kill()
 		else:
+			play_sfx(shriek_sfx)
 			invuln = true
 			sprite.modulate.a *= 0.5
 			await get_tree().create_timer(0.75).timeout
@@ -111,18 +117,19 @@ func kill() -> void:
 	process_mode = Node.PROCESS_MODE_DISABLED
 	GameManager.lives -= 1
 	await get_tree().create_timer(0.5).timeout
-	if GameManager.lives > 0:
-		current_health = MAX_HEALTH
-		GameManager.load_level(GameManager.current_level)
+	if GameManager.lives >= 0:
+		get_parent().reset_player()
 	else:
 		GameManager.do_game_over()
-	get_parent().queue_free()
+	queue_free()
 
 func set_current_animation() -> void:
 	pass
 
 var air_jump_sfx : AudioStream = load("res://assets/Sound Effects/trick.mp3")
+var ground_jump_sfx : AudioStream = load("res://assets/Sound Effects/combo.mp3")
 var shoot_sfx : AudioStream = load("res://assets/Sound Effects/bang_whonk.mp3")
+var shriek_sfx : AudioStream = load("res://assets/Sound Effects/shriek.mp3")
 
 func play_sfx(sfx : AudioStream) -> void:
 	var sfx_player : AudioStreamPlayer2D = AudioStreamPlayer2D.new()

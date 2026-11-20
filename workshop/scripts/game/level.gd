@@ -1,4 +1,5 @@
 extends Node2D
+class_name level
 
 var player_instance : PackedScene = preload("res://scenes/goobers/player.tscn")
 @onready var gamer : player = get_child(0)
@@ -6,6 +7,7 @@ var player_instance : PackedScene = preload("res://scenes/goobers/player.tscn")
 @export var starting_checkpoint : Sprite2D
 @export var goal : Sprite2D
 @export var kill_height : float
+@export var next_level : String
 
 @onready var current_checkpoint : Sprite2D = starting_checkpoint
 	

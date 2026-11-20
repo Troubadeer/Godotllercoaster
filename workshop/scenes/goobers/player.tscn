@@ -89,6 +89,7 @@ position = Vector2(-192, -108)
 scale = Vector2(0.35, 0.35)
 
 [node name="reticle" type="Sprite2D" parent="." unique_id=644803229]
+z_index = 60
 position = Vector2(0, -50)
 texture = ExtResource("3_cjyfx")
 
