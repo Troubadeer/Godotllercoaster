@@ -32,7 +32,7 @@ func enter_gameplay() -> void :
 	ui_layer = get_tree().current_scene
 	print(ui_layer)
 	print(get_tree().current_scene)
-	load_level("res://scenes/levels/test_level_1.tscn")
+	load_level("res://scenes/levels/level_1.tscn")
 	
 func pause_game(Player : player) -> void:
 	if not get_tree().paused:

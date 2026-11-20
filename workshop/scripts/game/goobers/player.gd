@@ -77,6 +77,7 @@ func shoot() -> void:
 		shooting_bullet.rotation = PI/2-reticle_angle
 		shooting_bullet.update_velocity()
 		shootable = false
+		play_sfx(shoot_sfx)
 		await get_tree().create_timer(SHOT_COOLDOWN).timeout
 		shootable = true
 
@@ -101,6 +102,7 @@ func do_air_jump(direction : float, ledge : bool) -> void:
 	if signf(direction) != signf(velocity.x):
 		velocity.x *= direction
 	air_jump = ledge
+	play_sfx(air_jump_sfx)
 	
 	await get_tree().create_timer(0.4).timeout
 	
@@ -118,3 +120,14 @@ func kill() -> void:
 
 func set_current_animation() -> void:
 	pass
+
+var air_jump_sfx : AudioStream = load("res://assets/Sound Effects/trick.mp3")
+var shoot_sfx : AudioStream = load("res://assets/Sound Effects/bang_whonk.mp3")
+
+func play_sfx(sfx : AudioStream) -> void:
+	var sfx_player : AudioStreamPlayer2D = AudioStreamPlayer2D.new()
+	sfx_player.stream = sfx
+	add_child(sfx_player)
+	sfx_player.play()
+	await sfx_player.finished
+	sfx_player.queue_free()

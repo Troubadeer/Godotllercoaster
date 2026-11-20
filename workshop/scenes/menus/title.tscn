@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://imndrmlod7k8"]
 
-[ext_resource type="Script" uid="uid://dfovhh0fiqok8" path="res://scenes/menus/title.gd" id="1_n8x5b"]
+[ext_resource type="Script" uid="uid://dfovhh0fiqok8" path="res://scripts/title.gd" id="1_n8x5b"]
 [ext_resource type="Texture2D" uid="uid://c173p4jyqsfyh" path="res://assets/Background/Purple.png" id="1_pcubs"]
 
 [node name="Title" type="Node2D" unique_id=2110705023]

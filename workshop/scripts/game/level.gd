@@ -1,14 +1,15 @@
 extends Node2D
 
-var current_checkpoint : Node2D
-@export var starting_checkpoint : Node2D
-@export var goal : Node2D
+var player_instance : PackedScene = preload("res://scenes/goobers/player.tscn")
+@onready var gamer : player = get_child(0)
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+@export var starting_checkpoint : Sprite2D
+@export var goal : Sprite2D
+@export var kill_height : float
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+@onready var current_checkpoint : Sprite2D = starting_checkpoint
+	
+func reset_player() -> void:
+	gamer = player_instance.instantiate()
+	gamer.position = current_checkpoint.position
+	add_child(gamer)
