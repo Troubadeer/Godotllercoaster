@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://c07ad2ki4rkc4"]
 
+[ext_resource type="Script" uid="uid://3yblm36b7bwk" path="res://scripts/game_over.gd" id="1_ebh1l"]
+
 [node name="GameOver" type="Node2D" unique_id=1856336271]
+script = ExtResource("1_ebh1l")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1217642365]
 z_index = 100
@@ -32,3 +35,6 @@ offset_top = 558.0
 offset_right = 116.0
 offset_bottom = 615.0
 text = "Exit Game"
+
+[connection signal="pressed" from="title_button" to="." method="_on_title_button_pressed"]
+[connection signal="pressed" from="exit_game" to="." method="_on_exit_game_pressed"]

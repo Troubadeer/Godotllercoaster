@@ -15,18 +15,20 @@ var player_ref : player
 
 # Takes in the filepath of the next level
 func load_level(path : String) -> void :
-	var level : Node = load(path).instantiate()
+	var lv : Node = load(path).instantiate()
 
 	ui_layer.get_child(0).queue_free()
-	ui_layer.add_child(level)
-	ui_layer.move_child(level, 0)
-	current_level = name
+	ui_layer.add_child(lv)
+	ui_layer.move_child(lv, 0)
+	current_level = path
 	
 func do_game_over() -> void :
 	get_tree().current_scene.add_child(load(game_over).instantiate())
 	
 func enter_gameplay() -> void :
 	get_tree().change_scene_to_file("res://scenes/ui_layer.tscn")
+	lives = 3
+	coins = 0
 	await get_tree().process_frame
 	await get_tree().process_frame
 	ui_layer = get_tree().current_scene
@@ -53,7 +55,7 @@ func add_coin(value : int) -> void:
 		coins -= 10
 
 func go_to_title() -> void:
-	get_tree().change_scene_to_file("res://scenes/menus/title.tscn")
+	get_tree().call_deferred("change_scene_to_file", "res://scenes/menus/title.tscn")
 
 func close_game() -> void:
 	get_tree().quit()
