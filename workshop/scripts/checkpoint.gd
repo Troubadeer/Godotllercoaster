@@ -11,3 +11,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 				GameManager.go_to_title()
 			else:
 				GameManager.load_level(get_parent().next_level)
+		
+		$AnimationPlayer.play("flag_gotten")
+		await get_tree().create_timer(3).timeout
+		$AnimationPlayer.play("flag_happy_idle")

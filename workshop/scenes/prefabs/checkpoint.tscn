@@ -1,13 +1,98 @@
 [gd_scene format=3 uid="uid://bb758e24qux62"]
 
-[ext_resource type="Texture2D" uid="uid://uehifgtj75sp" path="res://assets/Items/Checkpoints/Checkpoint/Checkpoint (No Flag).png" id="1_u1pnt"]
+[ext_resource type="Texture2D" uid="uid://dkcp26bnvdp23" path="res://assets/Items/Checkpoints/Checkpoint/sprite_sheets.png" id="1_uryah"]
 [ext_resource type="Script" uid="uid://dh0xd3w3fmsnd" path="res://scripts/checkpoint.gd" id="2_uryah"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q643j"]
 size = Vector2(9, 46)
 
+[sub_resource type="Animation" id="Animation_87kgb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(25, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ngn6g"]
+resource_name = "flag_gotten"
+length = 3.0000000000000004
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2i(0, 1), Vector2i(25, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_uryah"]
+resource_name = "flag_happy_idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2i(0, 2), Vector2i(8, 2)]
+}
+
+[sub_resource type="Animation" id="Animation_ypbhn"]
+resource_name = "flag_sad"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cf75g"]
+_data = {
+&"RESET": SubResource("Animation_87kgb"),
+&"flag_gotten": SubResource("Animation_ngn6g"),
+&"flag_happy_idle": SubResource("Animation_uryah"),
+&"flag_sad": SubResource("Animation_ypbhn")
+}
+
 [node name="Checkpoint" type="Sprite2D" unique_id=679036201]
-texture = ExtResource("1_u1pnt")
+texture = ExtResource("1_uryah")
+hframes = 26
+vframes = 3
+frame = 51
 script = ExtResource("2_uryah")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=672229274]
@@ -15,5 +100,9 @@ script = ExtResource("2_uryah")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=933616057]
 position = Vector2(-8.5, 9)
 shape = SubResource("RectangleShape2D_q643j")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=619502649]
+libraries/ = SubResource("AnimationLibrary_cf75g")
+autoplay = &"flag_sad"
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
