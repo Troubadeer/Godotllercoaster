@@ -1,3 +1,34 @@
 [gd_scene format=3 uid="uid://imndrmlod7k8"]
 
+[ext_resource type="Texture2D" uid="uid://c173p4jyqsfyh" path="res://assets/Background/Purple.png" id="1_pcubs"]
+
 [node name="Title" type="Node2D" unique_id=2110705023]
+
+[node name="background" type="Sprite2D" parent="." unique_id=253514619]
+position = Vector2(575.00006, 324)
+scale = Vector2(18.046875, 10.1875)
+texture = ExtResource("1_pcubs")
+
+[node name="title" type="Label" parent="." unique_id=164254753]
+offset_left = 276.0
+offset_top = 39.0
+offset_right = 920.0
+offset_bottom = 127.0
+theme_override_font_sizes/font_size = 64
+text = "Godot Game (WoAH)"
+
+[node name="start_button" type="Button" parent="." unique_id=999674118]
+offset_left = 445.0
+offset_top = 220.0
+offset_right = 697.0
+offset_bottom = 322.0
+theme_override_font_sizes/font_size = 32
+text = "Start Game"
+
+[node name="exit_button" type="Button" parent="." unique_id=493242416]
+offset_left = 444.0
+offset_top = 374.0
+offset_right = 696.0
+offset_bottom = 476.0
+theme_override_font_sizes/font_size = 32
+text = "Exit Game"
